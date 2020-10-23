@@ -1,4 +1,4 @@
-package com.example.LibraryAppDemo.Entity;
+package com.example.LibraryAppDemo.Domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

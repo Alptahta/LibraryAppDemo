@@ -1,4 +1,4 @@
-package com.example.LibraryAppDemo.Entity;
+package com.example.LibraryAppDemo.Domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -7,25 +7,24 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
 @Entity
-@Table(name = "author")
-public class Author implements Serializable {
+@Table(name = "publisher")
+public class Publisher implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
     @Column(name = "name")
+    @NotNull
     private String name;
 
-    @NotNull
     @Column(name = "description")
+    @NotNull
     private String description;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "publisher")
     private Set<Book> books = new HashSet<>();
 
     public String getName() {
@@ -54,7 +53,7 @@ public class Author implements Serializable {
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "Publisher{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
@@ -65,12 +64,12 @@ public class Author implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Author)) return false;
-        Author author = (Author) o;
-        return id.equals(author.id) &&
-                getName().equals(author.getName()) &&
-                getDescription().equals(author.getDescription()) &&
-                getBooks().equals(author.getBooks());
+        if (!(o instanceof Publisher)) return false;
+        Publisher publisher = (Publisher) o;
+        return id.equals(publisher.id) &&
+                getName().equals(publisher.getName()) &&
+                getDescription().equals(publisher.getDescription()) &&
+                getBooks().equals(publisher.getBooks());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.LibraryAppDemo.Entity;
+package com.example.LibraryAppDemo.Domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -7,24 +7,25 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+
 @Entity
-@Table(name = "publisher")
-public class Publisher implements Serializable {
+@Table(name = "author")
+public class Author implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "name")
     @NotNull
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
     @NotNull
+    @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "publisher")
+    @OneToMany(mappedBy = "author")
     private Set<Book> books = new HashSet<>();
 
     public String getName() {
@@ -53,7 +54,7 @@ public class Publisher implements Serializable {
 
     @Override
     public String toString() {
-        return "Publisher{" +
+        return "Author{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
@@ -64,12 +65,12 @@ public class Publisher implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Publisher)) return false;
-        Publisher publisher = (Publisher) o;
-        return id.equals(publisher.id) &&
-                getName().equals(publisher.getName()) &&
-                getDescription().equals(publisher.getDescription()) &&
-                getBooks().equals(publisher.getBooks());
+        if (!(o instanceof Author)) return false;
+        Author author = (Author) o;
+        return id.equals(author.id) &&
+                getName().equals(author.getName()) &&
+                getDescription().equals(author.getDescription()) &&
+                getBooks().equals(author.getBooks());
     }
 
     @Override
