@@ -1,4 +1,10 @@
-/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/Entity/Author.java
-/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/Entity/Publisher.java
-/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/Entity/Book.java
+/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/service/BookService.java
+/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/repository/AuthorRepository.java
+/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/entity/Publisher.java
+/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/repository/BookRepository.java
+/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/service/PublisherService.java
+/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/service/AuthorService.java
+/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/entity/Author.java
+/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/repository/PublisherRepository.java
 /home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/LibraryAppDemoApplication.java
+/home/alp/LibraryApp/LibraryAppDemo/src/main/java/com/example/LibraryAppDemo/entity/Book.java

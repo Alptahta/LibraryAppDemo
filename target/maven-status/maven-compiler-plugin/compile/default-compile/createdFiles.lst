@@ -1,4 +1,10 @@
-com/example/LibraryAppDemo/Entity/Book.class
+com/example/LibraryAppDemo/repository/BookRepository.class
 com/example/LibraryAppDemo/LibraryAppDemoApplication.class
-com/example/LibraryAppDemo/Entity/Publisher.class
-com/example/LibraryAppDemo/Entity/Author.class
+com/example/LibraryAppDemo/entity/Author.class
+com/example/LibraryAppDemo/entity/Book.class
+com/example/LibraryAppDemo/entity/Publisher.class
+com/example/LibraryAppDemo/repository/PublisherRepository.class
+com/example/LibraryAppDemo/service/PublisherService.class
+com/example/LibraryAppDemo/repository/AuthorRepository.class
+com/example/LibraryAppDemo/service/AuthorService.class
+com/example/LibraryAppDemo/service/BookService.class
