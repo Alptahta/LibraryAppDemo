@@ -31,6 +31,10 @@ public class Publisher implements Serializable {
         return name;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getDescription() {
         return description;
     }

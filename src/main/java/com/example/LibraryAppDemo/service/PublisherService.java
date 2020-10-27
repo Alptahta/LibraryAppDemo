@@ -5,6 +5,8 @@ import com.example.LibraryAppDemo.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class PublisherService {
@@ -15,11 +17,16 @@ public class PublisherService {
         this.publisherRepository = publisherRepository;
     }
 
+
     public Publisher save(Publisher publisher){
         return publisherRepository.save(publisher);
     }
 
     public void delete(Long id){
         publisherRepository.deleteById(id);
+    }
+
+    public List<Publisher> getAll(){
+        return publisherRepository.findAll();
     }
 }

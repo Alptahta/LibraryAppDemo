@@ -5,6 +5,8 @@ import com.example.LibraryAppDemo.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AuthorService {
@@ -21,5 +23,9 @@ public class AuthorService {
 
     public void delete(Long id){
         authorRepository.deleteById(id);
+    }
+
+    public List<Author> getAll(){
+        return authorRepository.findAll();
     }
 }

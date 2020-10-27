@@ -26,11 +26,15 @@ public class BookService {
     }
 
     public Book getByISBN(String isbn){
-        return bookRepository.findByISBN(isbn);
+        return bookRepository.findByIsbn(isbn);
     }
 
     public Book getByName(String name){
         return bookRepository.findByName(name);
+    }
+
+    public Book getById(Long id){
+        return bookRepository.getOne(id);
     }
 
     public Book getByBookSerialName(String name){
@@ -40,5 +44,10 @@ public class BookService {
     public List<Book> getByAuthor(String author){
         return bookRepository.findByAuthor(author);
     }
+
+    public List<Book> getAll(){
+        return bookRepository.findAll();
+    }
+
 
 }
