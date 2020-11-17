@@ -12,8 +12,7 @@ import java.util.Set;
 public class Publisher implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name")
@@ -37,6 +36,10 @@ public class Publisher implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Set<Book> getBooks() {

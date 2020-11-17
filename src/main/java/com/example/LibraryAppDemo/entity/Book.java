@@ -11,8 +11,7 @@ import java.util.Objects;
 public class Book implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name", unique=true)
@@ -23,9 +22,9 @@ public class Book implements Serializable {
     @NotNull
     private String altName;
 
-    @Column(name = "serial_name", unique = true)
+    @Column(name = "serial_name")
     @NotNull
-    private String bookSerialName;
+    private String serialName;
 
     @Column(name = "isbn", unique = true)
     @NotNull
@@ -37,63 +36,71 @@ public class Book implements Serializable {
 
 
     @ManyToOne(optional = false)
+    @NotNull
     private Publisher publisher;
 
     @ManyToOne(optional = false)
+    @NotNull
     private Author author;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
-    }
-
-    public String getAltName() {
-        return altName;
-    }
-
-    public String getBookSerialName() {
-        return bookSerialName;
-    }
-
-    public Publisher getPublisher() {
-        return publisher;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getAltName() {
+        return altName;
+    }
+
     public void setAltName(String altName) {
         this.altName = altName;
     }
 
-    public void setBookSerialName(String bookSerialName) {
-        this.bookSerialName = bookSerialName;
+    public String getSerialName() {
+        return serialName;
+    }
+
+    public void setSerialName(String serialName) {
+        this.serialName = serialName;
+    }
+
+    public String getIsbn() {
+        return isbn;
     }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public Author getAuthor() {
+        return author;
     }
 
     public void setAuthor(Author author) {
@@ -101,28 +108,14 @@ public class Book implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", altName='" + altName + '\'' +
-                ", bookSerialName='" + bookSerialName + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", description='" + description + '\'' +
-                ", publisher=" + publisher +
-                ", author=" + author +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Book)) return false;
         Book book = (Book) o;
-        return id.equals(book.id) &&
+        return getId().equals(book.getId()) &&
                 getName().equals(book.getName()) &&
                 getAltName().equals(book.getAltName()) &&
-                getBookSerialName().equals(book.getBookSerialName()) &&
+                getSerialName().equals(book.getSerialName()) &&
                 getIsbn().equals(book.getIsbn()) &&
                 getDescription().equals(book.getDescription()) &&
                 getPublisher().equals(book.getPublisher()) &&
@@ -131,6 +124,20 @@ public class Book implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, getName(), getAltName(), getBookSerialName(), getIsbn(), getDescription(), getPublisher(), getAuthor());
+        return Objects.hash(getId(), getName(), getAltName(), getSerialName(), getIsbn(), getDescription(), getPublisher(), getAuthor());
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", altName='" + altName + '\'' +
+                ", serialName='" + serialName + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", description='" + description + '\'' +
+                ", publisher=" + publisher +
+                ", author=" + author +
+                '}';
     }
 }

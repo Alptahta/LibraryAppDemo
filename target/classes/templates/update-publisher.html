@@ -2,13 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create New Publisher</title>
+    <title>Edit Publisher</title>
 </head>
 <body>
     <div align="center">
-        <h1>Create New Publisher</h1>
+        <h1>Edit Publisher</h1>
         <br/>
-        <form action="#" th:action="@{/save}" th:object="${publisher}" method="post">
+        <form action="#"
+              th:action="@{/publishers/update/{id}(id=${publisher.id})}"
+              th:object="${publisher}"
+              method="post">
             <table border="0" cellpadding="10">
                 <tr>
                     <td>Publisher Name</td>

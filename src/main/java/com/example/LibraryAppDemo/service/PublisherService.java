@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -17,16 +18,20 @@ public class PublisherService {
         this.publisherRepository = publisherRepository;
     }
 
-
     public Publisher save(Publisher publisher){
         return publisherRepository.save(publisher);
+    }
+
+    public Optional<Publisher> findById(Long id){
+        return publisherRepository.findById(id);
     }
 
     public void delete(Long id){
         publisherRepository.deleteById(id);
     }
 
-    public List<Publisher> getAll(){
+    public List<Publisher> findAll(){
         return publisherRepository.findAll();
     }
+
 }

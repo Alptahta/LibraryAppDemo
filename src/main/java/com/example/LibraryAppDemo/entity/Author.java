@@ -13,8 +13,7 @@ import java.util.Set;
 public class Author implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
@@ -28,28 +27,52 @@ public class Author implements Serializable {
     @OneToMany(mappedBy = "author")
     private Set<Book> books = new HashSet<>();
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Set<Book> getBooks() {
-        return books;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public Set<Book> getBooks() {
+        return books;
+    }
+
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Author)) return false;
+        Author author = (Author) o;
+        return getId().equals(author.getId()) &&
+                getName().equals(author.getName()) &&
+                getDescription().equals(author.getDescription()) &&
+                getBooks().equals(author.getBooks());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getDescription(), getBooks());
     }
 
     @Override
@@ -60,21 +83,5 @@ public class Author implements Serializable {
                 ", description='" + description + '\'' +
                 ", books=" + books +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Author)) return false;
-        Author author = (Author) o;
-        return id.equals(author.id) &&
-                getName().equals(author.getName()) &&
-                getDescription().equals(author.getDescription()) &&
-                getBooks().equals(author.getBooks());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, getName(), getDescription(), getBooks());
     }
 }

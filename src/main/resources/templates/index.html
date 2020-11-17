@@ -2,30 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Publishers</title>
+    <title>Library App</title>
 </head>
 <body>
     <div align="center">
-        <h1>Publishers</h1>
-        <a href="newPublisher">Create New Publisher</a>
+        <h1>Library</h1>
+        <a href="publishers">Check Publisher</a>
         <br/>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Publisher Name</th>
-                <th>Publisher ID</th>
-                <th>Publisher Description</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr th:each="publisher : ${listPublishers}">
-                    <td th:text="${publisher.name}">PublisherName</td>
-                    <td th:text="${publisher.id}">PublisherID</td>
-                    <td th:text="${publisher.description}">Publisher Description</td>
-                </tr>
-            </tbody>
-
-        </table>
+        <a href="authors">Check Authors</a>
+        <br/>
+        <a href="books">Check Books</a>
+        <br/>
 
     </div>
 

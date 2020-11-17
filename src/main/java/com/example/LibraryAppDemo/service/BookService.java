@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -33,19 +34,19 @@ public class BookService {
         return bookRepository.findByName(name);
     }
 
-    public Book getById(Long id){
-        return bookRepository.getOne(id);
+    public Optional<Book> findById(Long id){
+        return bookRepository.findById(id);
     }
 
-    public Book getByBookSerialName(String name){
-        return bookRepository.findByBookSerialName(name);
+    public List<Book> getByBookSerialName(String serialName){
+        return bookRepository.findBySerialName(serialName);
     }
 
     public List<Book> getByAuthor(String author){
         return bookRepository.findByAuthor(author);
     }
 
-    public List<Book> getAll(){
+    public List<Book> findAll(){
         return bookRepository.findAll();
     }
 

@@ -1,29 +1,73 @@
 package com.example.LibraryAppDemo.controller;
 
 import com.example.LibraryAppDemo.entity.Book;
+import com.example.LibraryAppDemo.service.AuthorService;
 import com.example.LibraryAppDemo.service.BookService;
+import com.example.LibraryAppDemo.service.PublisherService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("/books")
 public class BookController {
 
     private final BookService bookService;
 
-    public BookController(BookService bookService) {
+    private final PublisherService publisherService;
+
+    private final AuthorService authorService;
+
+    public BookController(BookService bookService, PublisherService publisherService, AuthorService authorService) {
         this.bookService = bookService;
+        this.publisherService = publisherService;
+        this.authorService = authorService;
     }
 
-    @GetMapping("/books")
-    List<Book> getAllBooks(){
-        return bookService.getAll();
+
+
+    @GetMapping
+    String getAllBooks(Model model){
+        List<Book> listBooks = bookService.findAll();
+        model.addAttribute("listBooks", listBooks);
+        return "books";
     }
 
-    @GetMapping("/getBookById")
-    Book getBookById(@PathVariable Long  id){
-        return bookService.getById(id);
+    @GetMapping("/add-book")
+    public String showAddBookForm(Book book, Model model){
+        model.addAttribute("publishers", publisherService.findAll());
+        model.addAttribute("authors", authorService.findAll());
+        return "add-book";
+    }
+
+    @PostMapping("/addbook")
+    public String addBook(@Valid Book book, BindingResult result, Model model) {
+        bookService.save(book);
+        model.addAttribute("books", bookService.findAll());
+        return "redirect:/books";
+    }
+    @GetMapping("/edit/{id}")
+    public String showBookUpdateForm(@PathVariable("id") long id, Model model) {
+        Book book = bookService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid book Id:" + id));;
+        model.addAttribute("book", book);
+        return "update-book";
+    }
+    @PostMapping("/update/{id}")
+    public String updateBook(@PathVariable("id") long id, @Valid Book book, BindingResult result, Model model) {
+        bookService.save(book);
+        model.addAttribute("books", bookService.findAll());
+        return "redirect:/books";
+    }
+
+
+    @RequestMapping("/delete/{id}")
+    String deleteBook(@PathVariable(name = "id") long id){
+        bookService.delete(id);
+        return "redirect:/books";
     }
 
     @GetMapping("/getBooksByISBN")
@@ -37,7 +81,7 @@ public class BookController {
     }
 
     @GetMapping("/getBookBySerialName")
-    Book getBookBySerialName(@RequestParam(value = "serial_name")String serialName){
+    List<Book> getBookBySerialName(@RequestParam(value = "serial_name")String serialName){
         return bookService.getByBookSerialName(serialName);
     }
 
@@ -46,18 +90,6 @@ public class BookController {
         return bookService.getByAuthor(author);
     }
 
-    @PostMapping("/newBook")
-    Book newBook(@RequestBody Book newBook){
-        return bookService.save(newBook);
-    }
 
-    @PutMapping("/updateBook")
-    Book updateBook(@RequestBody Book updateBook){
-        return bookService.save(updateBook);
-    }
 
-    @DeleteMapping("/deleteBookById")
-    void deleteBookById(@PathVariable Long id){
-        bookService.delete(id);
-    }
 }
