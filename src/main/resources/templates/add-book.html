@@ -25,44 +25,19 @@
             <label for="description">Description</label>
             <input type="text" th:field="*{description}" id="description" placeholder="Description">
             <br/>
-            <table>
-                <tr>
-                    <td>Select Publisher</td>
-                    <td><select name="publisher">
-                            <option th:each="publisher: ${publishers}" th:text = ${publisher.name} />
+
+            <label>Publisher</label>
+                    <select  th:field="*{publisher}" name="publishers">
+                            <option th:each="publisher: ${listPublishers}" th:text = ${publisher.name} th:field="*{publisher}" th:value="${publisher.id}" />
                     </select>
-                    </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td>Select Author</td>
-                    <td><select name="author">
-                        <option th:each="author: ${authors}" th:text = ${author.name} />
+            <br/>
+
+            <label>Author</label>
+            <select th:field="*{author}" name="authors">
+                        <option th:each="author: ${listAuthors}" th:text = ${author.name}  th:value="${author.id}"/>
                     </select>
-                    </td>
-                </tr>
-            </table>
-            <!--
-            <div th:object="${publishers}">
-                <select  th:field="*{publisher.id}" id="publisher" name="testOrder">
-                    <option value="">Select Publisher</option>
-                    <option th:each="publisher : ${publishers}"
-                            th:value="${publisher.name}"
-                            th:text="${publisher.name}+' : '+${publisher.description}"
-                            ></option>
-                </select>
-            </div>
-            <div th:object="${authors}">
-                <select  th:field="*{author.id}" id="author" name="testOrder">
-                    <option value="">Select Author</option>
-                    <option th:each="author : ${authors}"
-                            th:value="${author.name}"
-                            th:text="${author.name}+' : '+${author.description}"
-                    ></option>
-                </select>
-            </div>
-            -->
+            <br/>
+
             <input type="submit" value="Add Book">
 
         </form>

@@ -1,6 +1,8 @@
 package com.example.LibraryAppDemo.controller;
 
+import com.example.LibraryAppDemo.entity.Author;
 import com.example.LibraryAppDemo.entity.Book;
+import com.example.LibraryAppDemo.entity.Publisher;
 import com.example.LibraryAppDemo.service.AuthorService;
 import com.example.LibraryAppDemo.service.BookService;
 import com.example.LibraryAppDemo.service.PublisherService;
@@ -39,8 +41,10 @@ public class BookController {
 
     @GetMapping("/add-book")
     public String showAddBookForm(Book book, Model model){
-        model.addAttribute("publishers", publisherService.findAll());
-        model.addAttribute("authors", authorService.findAll());
+        List<Publisher> listPublishers = publisherService.findAll();
+        List<Author> listAuthors = authorService.findAll();
+        model.addAttribute("listPublishers", listPublishers);
+        model.addAttribute("listAuthors", listAuthors);
         return "add-book";
     }
 
